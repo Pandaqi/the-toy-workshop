@@ -2,9 +2,10 @@ extends StaticBody2D
 class_name Edge
 
 @export var col_shape_node : CollisionShape2D
-@export var sprite : Sprite2D
 var broken := false
+var rect : Rect2
 
+const THICKNESS := 20.0 # @TODO: Config
 const MIN_ANGLE_FOR_EDGE_BREAK := 0.18*PI # @TODO: Config
 
 func _ready() -> void:
@@ -17,13 +18,17 @@ func fit_between(a:SliderPlayer, b:SliderPlayer) -> void:
 	
 	var center_pos := (a.global_position + b.global_position) * 0.5
 	var length := vec.length()
-	var width := 32.0 # @TODO: Config
+	var width := THICKNESS
 	var size := Vector2(length, width)
 	var shp : RectangleShape2D = col_shape_node.shape
 	shp.size = size
 	
-	var base_size := 128.0
-	sprite.set_scale(Vector2.ONE * size / base_size)
+	rect = Rect2(-0.5*size, size)
+	
+	var base_size := 256.0
+	var sprite_scale := Vector2.ONE * size / base_size
+	#sprite.set_scale(sprite_scale)
+	#sprite.material.set_shader_parameter("scale", sprite_scale)
 	
 	set_position(center_pos)
 	
@@ -34,4 +39,14 @@ func fit_between(a:SliderPlayer, b:SliderPlayer) -> void:
 	broken = abs(angle) >= MIN_ANGLE_FOR_EDGE_BREAK
 	
 	col_shape_node.disabled = broken
-	sprite.modulate.a = 0.25 if broken else 1.0
+	modulate.a = 0.25 if broken else 1.0
+	
+	queue_redraw()
+
+func _draw() -> void:
+	var b := StyleBoxFlat.new()
+	b.bg_color = Color.BLACK
+	b.border_color = Color.WHITE
+	b.set_corner_radius_all(8.0)
+	b.set_border_width_all(2.0)
+	draw_style_box(b, rect)

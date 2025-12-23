@@ -11,14 +11,14 @@
 
 [node name="Main" type="Node2D" unique_id=442931553]
 
-[node name="Sliders" type="Node2D" parent="." unique_id=728342587]
-script = ExtResource("1_nul57")
-slider_scene = ExtResource("2_nul57")
-
 [node name="Edges" type="Node2D" parent="." unique_id=916891675 node_paths=PackedStringArray("sliders")]
 script = ExtResource("2_stb74")
 sliders = NodePath("../Sliders")
 edge_scene = ExtResource("5_q74el")
+
+[node name="Sliders" type="Node2D" parent="." unique_id=728342587]
+script = ExtResource("1_nul57")
+slider_scene = ExtResource("2_nul57")
 
 [node name="Gifts" type="Node2D" parent="." unique_id=1793489989 node_paths=PackedStringArray("timer", "sliders")]
 script = ExtResource("5_6px0q")

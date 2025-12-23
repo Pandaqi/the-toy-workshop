@@ -1,18 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://cshnp6yn20xpm"]
 
 [ext_resource type="Script" uid="uid://lklfvtjjik7q" path="res://the-toy-factory/map/gifts/gift.gd" id="1_l7r6i"]
-[ext_resource type="Texture2D" uid="uid://bb5pkvgkb44xj" path="res://icon.svg" id="2_05vqh"]
+[ext_resource type="Texture2D" uid="uid://iqnf101miofb" path="res://the-toy-factory/shared/assets.webp" id="2_l7r6i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6px0q"]
-radius = 22.022715
+radius = 16.27882
 
-[node name="Gift" type="RigidBody2D" unique_id=885653250]
+[node name="Gift" type="RigidBody2D" unique_id=885653250 node_paths=PackedStringArray("sprite")]
 gravity_scale = 0.2
 script = ExtResource("1_l7r6i")
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=940925513]
 shape = SubResource("CircleShape2D_6px0q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=358833276]
-scale = Vector2(0.33, 0.33)
-texture = ExtResource("2_05vqh")
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_l7r6i")
+hframes = 4
+vframes = 4

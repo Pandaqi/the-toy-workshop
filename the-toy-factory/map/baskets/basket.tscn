@@ -1,17 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3632k0orh8pk"]
+[gd_scene load_steps=8 format=3 uid="uid://d3632k0orh8pk"]
 
 [ext_resource type="Script" uid="uid://bh71pfjcjl6bn" path="res://the-toy-factory/map/baskets/basket.gd" id="1_yh5ap"]
-[ext_resource type="Texture2D" uid="uid://bb5pkvgkb44xj" path="res://icon.svg" id="2_ol4dk"]
+[ext_resource type="Shader" uid="uid://dw7htltadsxew" path="res://the-toy-factory/map/baskets/basket.gdshader" id="2_l4wvx"]
+[ext_resource type="Texture2D" uid="uid://qqutd4d4mwpb" path="res://the-toy-factory/map/baskets/basket.webp" id="3_l4wvx"]
+[ext_resource type="Texture2D" uid="uid://iqnf101miofb" path="res://the-toy-factory/shared/assets.webp" id="3_ol4dk"]
+[ext_resource type="Shader" uid="uid://cl2sxwefk72to" path="res://the-toy-factory/map/baskets/drop_shadow.gdshader" id="4_82riw"]
 
-[node name="Basket" type="Node2D" unique_id=1920963403 node_paths=PackedStringArray("area", "col_shape_node", "sprite")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_82riw"]
+shader = ExtResource("2_l4wvx")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/right = 40
+shader_parameter/top = 40
+shader_parameter/left = 40
+shader_parameter/bottom = 40
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kd5v6"]
+shader = ExtResource("4_82riw")
+shader_parameter/shadow_only = false
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/blur_std = 5.0
+
+[node name="Basket" type="Node2D" unique_id=1920963403 node_paths=PackedStringArray("area", "col_shape_node", "sprite", "sprite_type")]
 script = ExtResource("1_yh5ap")
 area = NodePath("Area2D")
 col_shape_node = NodePath("Area2D/CollisionShape2D")
 sprite = NodePath("Sprite2D")
+sprite_type = NodePath("SpriteType")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1859225724]
-texture = ExtResource("2_ol4dk")
+material = SubResource("ShaderMaterial_82riw")
+texture = ExtResource("3_l4wvx")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=971449154]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=23122281]
+
+[node name="SpriteType" type="Sprite2D" parent="." unique_id=841566453]
+material = SubResource("ShaderMaterial_kd5v6")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_ol4dk")
+hframes = 4
+vframes = 4

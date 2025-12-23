@@ -1,8 +1,6 @@
 extends Node2D
 class_name SliderPlayer
 
-# @TODO: config, read viewport size, something smarter
-var y_bounds := { "min": 50, "max": 600 }
 var dir := 1
 var is_held := false
 var fixed := false
@@ -12,6 +10,7 @@ var player_index := -1
 
 const MOVE_SPEED := 50.0 # @TODO: config
 const MOVE_SPEED_MULT_HOLD := 4.5 # @TODO: Config
+const Y_BOUND_DIST_FROM_EDGE := 0.2 # @TODO: Config
 
 @export var auto_move_enabled := true
 
@@ -61,10 +60,15 @@ func get_speed() -> float:
 	if is_held: speed *= MOVE_SPEED_MULT_HOLD
 	return speed
 
+func get_path_bounds() -> Dictionary[String,float]:
+	var vp := get_viewport().get_visible_rect().size
+	return { "min": Y_BOUND_DIST_FROM_EDGE*vp.y, "max": (1.0-Y_BOUND_DIST_FROM_EDGE)*vp.y }
+
 func auto_move(delta:float) -> void:
 	if fixed: return
 	if not auto_move_enabled: return
 	
+	var y_bounds := get_path_bounds()
 	var new_pos := get_position() + dir * delta * get_speed() * Vector2.DOWN
 	if new_pos.y <= y_bounds.min:
 		dir = 1

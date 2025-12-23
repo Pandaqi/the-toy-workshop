@@ -3,11 +3,29 @@ class_name Gift
 
 enum Type
 {
-	RED,
-	GREEN,
-	BLUE,
-	YELLOW
+	SQUARE,
+	STAR,
+	CIRCLE,
+	TRIANGLE
 }
+
+const COLORS = [Color(1.0,0.8, 0.8), Color(1.0, 1.0, 0.8), Color(0.8, 0.8, 1.0), Color(0.8, 1.0, 0.8)]
+
+@export var sprite : Sprite2D
+var type : Type
+
+signal killed(g:Gift)
+
+static func get_all_types() -> Array[Type]:
+	var arr : Array[Type] = []
+	arr.assign(Type.values())
+	return arr
+
+static func get_frame_for_type(tp:Type) -> int:
+	return Type.values().find(tp)
+
+static func get_color_for_type(tp:Type) -> Color:
+	return COLORS[Gift.get_frame_for_type(tp)]
 
 func _physics_process(_delta:float) -> void:
 	check_if_off_screen()
@@ -18,5 +36,10 @@ func check_if_off_screen() -> void:
 	if pos.y <= vp.y: return
 	kill()
 
-func kill() -> void:
+func set_type(tp:Type) -> void:
+	sprite.set_frame(Gift.get_frame_for_type(tp))
+
+func kill(good := false) -> void:
+	print("Gift killed. Good? ", good)
 	queue_free()
+	killed.emit(self)
