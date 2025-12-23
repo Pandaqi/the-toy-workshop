@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3632k0orh8pk"]
+
+[ext_resource type="Script" uid="uid://bh71pfjcjl6bn" path="res://the-toy-factory/map/baskets/basket.gd" id="1_yh5ap"]
+[ext_resource type="Texture2D" uid="uid://bb5pkvgkb44xj" path="res://icon.svg" id="2_ol4dk"]
+
+[node name="Basket" type="Node2D" unique_id=1920963403 node_paths=PackedStringArray("area", "col_shape_node", "sprite")]
+script = ExtResource("1_yh5ap")
+area = NodePath("Area2D")
+col_shape_node = NodePath("Area2D/CollisionShape2D")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1859225724]
+texture = ExtResource("2_ol4dk")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=971449154]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=23122281]

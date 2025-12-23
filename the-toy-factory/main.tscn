@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctn77ic3gi4aa"]
+
+[ext_resource type="Script" uid="uid://jnruh551l300" path="res://the-toy-factory/map/sliders/sliders.gd" id="1_nul57"]
+[ext_resource type="PackedScene" uid="uid://dq7q6grepk3qe" path="res://the-toy-factory/map/sliders/slider.tscn" id="2_nul57"]
+[ext_resource type="Script" uid="uid://cshm38e4rjhjv" path="res://the-toy-factory/map/edges/edges.gd" id="2_stb74"]
+[ext_resource type="Script" uid="uid://dyf7qqknjxpqo" path="res://the-toy-factory/map/gifts/gifts.gd" id="5_6px0q"]
+[ext_resource type="PackedScene" uid="uid://fb1pgue58sii" path="res://the-toy-factory/map/edges/edge.tscn" id="5_q74el"]
+[ext_resource type="PackedScene" uid="uid://cshnp6yn20xpm" path="res://the-toy-factory/map/gifts/gift.tscn" id="6_6px0q"]
+[ext_resource type="Script" uid="uid://rd50p3uaay7m" path="res://the-toy-factory/map/baskets/baskets.gd" id="7_7unbb"]
+[ext_resource type="PackedScene" uid="uid://d3632k0orh8pk" path="res://the-toy-factory/map/baskets/basket.tscn" id="8_yont5"]
+
+[node name="Main" type="Node2D" unique_id=442931553]
+
+[node name="Sliders" type="Node2D" parent="." unique_id=728342587]
+script = ExtResource("1_nul57")
+slider_scene = ExtResource("2_nul57")
+
+[node name="Edges" type="Node2D" parent="." unique_id=916891675 node_paths=PackedStringArray("sliders")]
+script = ExtResource("2_stb74")
+sliders = NodePath("../Sliders")
+edge_scene = ExtResource("5_q74el")
+
+[node name="Gifts" type="Node2D" parent="." unique_id=1793489989 node_paths=PackedStringArray("timer", "sliders")]
+script = ExtResource("5_6px0q")
+timer = NodePath("Timer")
+gift_scene = ExtResource("6_6px0q")
+sliders = NodePath("../Sliders")
+
+[node name="Timer" type="Timer" parent="Gifts" unique_id=1976142630]
+one_shot = true
+
+[node name="Baskets" type="Node2D" parent="." unique_id=1675005568]
+script = ExtResource("7_7unbb")
+basket_scene = ExtResource("8_yont5")

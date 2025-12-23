@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://fb1pgue58sii"]
+
+[ext_resource type="Script" uid="uid://cccmlh3ba7eo4" path="res://the-toy-factory/map/edges/edge.gd" id="1_px3dp"]
+[ext_resource type="Texture2D" uid="uid://bb5pkvgkb44xj" path="res://icon.svg" id="2_8cgic"]
+
+[node name="Edge" type="StaticBody2D" unique_id=1660111971 node_paths=PackedStringArray("col_shape_node", "sprite")]
+script = ExtResource("1_px3dp")
+col_shape_node = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=357900535]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=923035333]
+texture = ExtResource("2_8cgic")

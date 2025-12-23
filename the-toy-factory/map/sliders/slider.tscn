@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq7q6grepk3qe"]
+
+[ext_resource type="Script" uid="uid://bgelbgeewdvw1" path="res://the-toy-factory/map/sliders/slider.gd" id="1_utoh5"]
+[ext_resource type="Texture2D" uid="uid://bb5pkvgkb44xj" path="res://icon.svg" id="2_m3m2p"]
+
+[node name="Slider" type="Node2D" unique_id=545122372]
+script = ExtResource("1_utoh5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1753006563]
+texture = ExtResource("2_m3m2p")
