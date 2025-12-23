@@ -1,6 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctn77ic3gi4aa"]
+[gd_scene load_steps=13 format=3 uid="uid://ctn77ic3gi4aa"]
 
+[ext_resource type="Script" uid="uid://ocl0tyru3bcu" path="res://the-toy-factory/background/background.gd" id="1_7unbb"]
 [ext_resource type="Script" uid="uid://jnruh551l300" path="res://the-toy-factory/map/sliders/sliders.gd" id="1_nul57"]
+[ext_resource type="FontFile" uid="uid://cdpbs4r7y1uw1" path="res://the-toy-factory/ui/fonts/gomarice_kinako_mochi.ttf" id="2_c5rqg"]
+[ext_resource type="Texture2D" uid="uid://6m641lvgg7ul" path="res://the-toy-factory/background/factory-bg.webp" id="2_k2vhd"]
 [ext_resource type="PackedScene" uid="uid://dq7q6grepk3qe" path="res://the-toy-factory/map/sliders/slider.tscn" id="2_nul57"]
 [ext_resource type="Script" uid="uid://cshm38e4rjhjv" path="res://the-toy-factory/map/edges/edges.gd" id="2_stb74"]
 [ext_resource type="Script" uid="uid://dyf7qqknjxpqo" path="res://the-toy-factory/map/gifts/gifts.gd" id="5_6px0q"]
@@ -8,27 +11,74 @@
 [ext_resource type="PackedScene" uid="uid://cshnp6yn20xpm" path="res://the-toy-factory/map/gifts/gift.tscn" id="6_6px0q"]
 [ext_resource type="Script" uid="uid://rd50p3uaay7m" path="res://the-toy-factory/map/baskets/baskets.gd" id="7_7unbb"]
 [ext_resource type="PackedScene" uid="uid://d3632k0orh8pk" path="res://the-toy-factory/map/baskets/basket.tscn" id="8_yont5"]
+[ext_resource type="Script" uid="uid://dgebfcmsw85yo" path="res://the-toy-factory/ui/ui.gd" id="11_m0c03"]
 
 [node name="Main" type="Node2D" unique_id=442931553]
 
-[node name="Edges" type="Node2D" parent="." unique_id=916891675 node_paths=PackedStringArray("sliders")]
+[node name="Background" type="CanvasLayer" parent="." unique_id=2120066820 node_paths=PackedStringArray("baskets", "score_label")]
+script = ExtResource("1_7unbb")
+baskets = NodePath("../Game/Baskets")
+score_label = NodePath("ScoreLabel")
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=727571760]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k2vhd")
+stretch_mode = 1
+
+[node name="ScoreLabel" type="Label" parent="Background" unique_id=720305641]
+custom_minimum_size = Vector2(256, 256)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.80109006, 0.3103465, 0.15031075, 1)
+theme_override_fonts/font = ExtResource("2_c5rqg")
+theme_override_font_sizes/font_size = 96
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Game" type="CanvasLayer" parent="." unique_id=1065955034]
+layer = 4
+
+[node name="Edges" type="Node2D" parent="Game" unique_id=916891675 node_paths=PackedStringArray("sliders")]
 script = ExtResource("2_stb74")
 sliders = NodePath("../Sliders")
 edge_scene = ExtResource("5_q74el")
 
-[node name="Sliders" type="Node2D" parent="." unique_id=728342587]
+[node name="Sliders" type="Node2D" parent="Game" unique_id=728342587]
 script = ExtResource("1_nul57")
 slider_scene = ExtResource("2_nul57")
 
-[node name="Gifts" type="Node2D" parent="." unique_id=1793489989 node_paths=PackedStringArray("timer", "sliders")]
+[node name="Gifts" type="Node2D" parent="Game" unique_id=1793489989 node_paths=PackedStringArray("timer", "sliders")]
 script = ExtResource("5_6px0q")
 timer = NodePath("Timer")
 gift_scene = ExtResource("6_6px0q")
 sliders = NodePath("../Sliders")
 
-[node name="Timer" type="Timer" parent="Gifts" unique_id=1976142630]
+[node name="Timer" type="Timer" parent="Game/Gifts" unique_id=1976142630]
 one_shot = true
 
-[node name="Baskets" type="Node2D" parent="." unique_id=1675005568]
+[node name="Baskets" type="Node2D" parent="Game" unique_id=1675005568 node_paths=PackedStringArray("gifts")]
 script = ExtResource("7_7unbb")
 basket_scene = ExtResource("8_yont5")
+gifts = NodePath("../Gifts")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=501688603 node_paths=PackedStringArray("baskets", "audio_victory")]
+layer = 8
+script = ExtResource("11_m0c03")
+baskets = NodePath("../Game/Baskets")
+audio_victory = NodePath("AudioVictory")
+
+[node name="AudioVictory" type="AudioStreamPlayer" parent="UI" unique_id=1599638360]

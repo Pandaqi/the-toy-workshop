@@ -3,12 +3,20 @@
 [ext_resource type="Script" uid="uid://bgelbgeewdvw1" path="res://the-toy-factory/map/sliders/slider.gd" id="1_utoh5"]
 [ext_resource type="Texture2D" uid="uid://iqnf101miofb" path="res://the-toy-factory/shared/assets.webp" id="2_utoh5"]
 
-[node name="Slider" type="Node2D" unique_id=545122372]
+[node name="Slider" type="Node2D" unique_id=545122372 node_paths=PackedStringArray("sprite_arrow")]
 script = ExtResource("1_utoh5")
+sprite_arrow = NodePath("SpriteArrow")
+
+[node name="SpriteArrow" type="Sprite2D" parent="." unique_id=1261770185]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_utoh5")
+hframes = 4
+vframes = 4
+frame = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1753006563]
-modulate = Color(0.19797397, 2.7001352e-05, 0.19804007, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_utoh5")
 hframes = 4
 vframes = 4
+frame = 4

@@ -5,8 +5,9 @@ class_name Sliders
 var sliders : Array[SliderPlayer]
 
 @export var debug := true
+@export var debug_player_count := 6
 
-const MAX_PLAYER_COUNT := 12 # @TODO: Config
+const NUM_SLIDERS := 13 # @TODO: Config
 
 func _ready() -> void:
 	create_sliders()
@@ -19,8 +20,7 @@ func debug_slider_players() -> void:
 	if not debug: return
 	if not OS.is_debug_build(): return
 	
-	var test_player_count := 3
-	refresh_num_players(test_player_count)
+	refresh_num_players(debug_player_count)
 
 func count() -> int:
 	return sliders.size()
@@ -44,16 +44,17 @@ func refresh_num_players(n:int) -> void:
 	for slider in sliders:
 		slider.disconnect_player()
 	
-	# @TODO: this is a rudimentary way to spread out the players, add more safeguards
+	# @TODO: this is a rudimentary way to spread out the players, add more safeguards or just manually input all the configurations?
 	var num_sliders := count()
 	for i in range(n):
-		var index := floori(i / float(n) * (num_sliders - 2)) + 1
+		var index_raw := floori((i+0.5) / float(n) * num_sliders - 1)
+		var index := clampi(index_raw, 1, count() - 2)
 		sliders[index].attach_to_player(i)
 		print(i, index)
 
 func create_sliders() -> void:
 	# player-controlled sliders
-	for i in range(MAX_PLAYER_COUNT):
+	for i in range(NUM_SLIDERS):
 		var s := create_slider()
 		sliders.push_back(s)
 	
@@ -78,7 +79,7 @@ func _on_size_changed() -> void:
 func refresh_slider_positions() -> void:
 	var vp := get_viewport().get_visible_rect().size
 	var half_y := 0.5*vp.y
-	var x_dist_between_sliders := vp.x / (MAX_PLAYER_COUNT + 1)
+	var x_dist_between_sliders := vp.x / (NUM_SLIDERS + 1)
 	
 	sliders.front().set_position(Vector2(0, half_y))
 	sliders.back().set_position(Vector2(vp.x, half_y))

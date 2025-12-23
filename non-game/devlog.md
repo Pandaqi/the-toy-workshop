@@ -58,7 +58,14 @@ All I needed to add was ...
 * Baskets display which type they want: you only score for delivering the right one.
 * Keep a general score, and if high enough, you win!
 
-And some finetuning here. For example, **clean up** gifts that fall off screen (I forgot this at first and wondered why the game became very laggy if left open a while!), and **rescaling** the game so it works with any screen size. 
+And some finetuning here. For example, 
+
+* **Clean up** gifts that fall off screen (I forgot this at first and wondered why the game became very laggy if left open a while!)
+* Add an arrow with the direction of your slider right now for clarity
+* Make an edge flash red when it's about to break (or come back)
+* Show the game score in a big and bold font plastered across the background.
+* Show the contents of individual baskets => I switched to saying "Each basket needs X gifts inside, if so, you win". It just fit the game idea better than a single unified objective or an objective based on score. I know this because it simplified my code and made all puzzle pieces simply fall in the right place. For example, it was very easy to just show a counter _per basket_, as opposed to finding some space on the screen for a single counter _for all presents_.
+* Perhaps most importantly, **rescale** the game so it works with any screen size. 
 
 I could've chosen a fixed "factory layout" and just made everything fit those dimensions. Whenever possible, however, I want to make it "flexible" so that it truly adapts to the native resolution of your screen. In a way, if your screen is slightly taller than that of another family, you are playing a slightly easier game because you have more time before gifts fall to the bottom :p
 

@@ -5,6 +5,8 @@ class_name Basket
 @export var col_shape_node : CollisionShape2D
 @export var sprite : Sprite2D
 @export var sprite_type : Sprite2D
+@export var label_container : Node2D
+@export var label : Label
 
 const BASKET_HEIGHT := 96.0 # @TODO: Config??
 const GIFT_DELIVERED_TARGET := 5 # @TODO: Config
@@ -16,22 +18,33 @@ signal gift_delivered(g:Gift)
 
 func _ready() -> void:
 	area.body_entered.connect(_on_body_entered)
+	update_label()
 
 func set_type(tp:Gift.Type) -> void:
 	type = tp
 	sprite_type.set_frame(Gift.get_frame_for_type(type))
-	sprite.modulate = Gift.get_color_for_type(type)
-
-func _on_body_entered(body) -> void:
-	if not (body is Gift): return
-	body = body as Gift
 	
+	var col := Gift.get_color_for_type(type)
+	sprite.modulate = col
+	label_container.modulate = col
+
+func _on_body_entered(body:Node2D) -> void:
+	if not (body is Gift): return
+
 	# @TODO: animation/delay/keep for a bit/whatever
-	var is_good : bool = body.type == type
-	body.kill(is_good)
+	var is_good := (body as Gift).is_type(type)
 	if is_good:
-		num_delivered += 1
-		gift_delivered.emit(body)
+		deliver_gift(body)
+	
+	body.kill(is_good)
+
+func deliver_gift(g:Gift) -> void:
+	num_delivered += 1
+	gift_delivered.emit(g)
+	update_label()
+
+func update_label() -> void:
+	label.set_text(str(num_delivered) + "/" + str(GIFT_DELIVERED_TARGET))
 
 func set_width(w:float) -> void:
 	var total_size := Vector2(w, BASKET_HEIGHT)
@@ -46,7 +59,11 @@ func set_width(w:float) -> void:
 	sprite.material.set_shader_parameter("scale", sprite_scale)
 	sprite.position.y = -half_y
 	sprite_type.position.y = -half_y
-	sprite_type.set_scale(0.35*min(total_size.x, total_size.y)*Vector2.ONE / 256.0)
+	
+	var sprite_type_size := 0.35*minf(total_size.x, total_size.y)
+	sprite_type.set_scale(sprite_type_size*Vector2.ONE / 256.0)
+	
+	label_container.position = sprite_type.position + 0.5 * Vector2.DOWN * sprite_type_size
 
 func has_enough_gifts() -> bool:
 	return num_delivered >= GIFT_DELIVERED_TARGET

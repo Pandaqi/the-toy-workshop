@@ -13,6 +13,8 @@ const COLORS = [Color(1.0,0.8, 0.8), Color(1.0, 1.0, 0.8), Color(0.8, 0.8, 1.0),
 
 @export var sprite : Sprite2D
 var type : Type
+var time_appeared := 0.0
+var was_delivered := false
 
 signal killed(g:Gift)
 
@@ -37,9 +39,14 @@ func check_if_off_screen() -> void:
 	kill()
 
 func set_type(tp:Type) -> void:
+	type = tp
 	sprite.set_frame(Gift.get_frame_for_type(tp))
+
+func is_type(tp:Type) -> bool:
+	return type == tp
 
 func kill(good := false) -> void:
 	print("Gift killed. Good? ", good)
+	was_delivered = good
 	queue_free()
 	killed.emit(self)

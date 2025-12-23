@@ -4,6 +4,7 @@ class_name Edge
 @export var col_shape_node : CollisionShape2D
 var broken := false
 var rect : Rect2
+var angle := 0.0
 
 const THICKNESS := 20.0 # @TODO: Config
 const MIN_ANGLE_FOR_EDGE_BREAK := 0.18*PI # @TODO: Config
@@ -25,8 +26,9 @@ func fit_between(a:SliderPlayer, b:SliderPlayer) -> void:
 	
 	rect = Rect2(-0.5*size, size)
 	
-	var base_size := 256.0
-	var sprite_scale := Vector2.ONE * size / base_size
+	# for when I used a SPRITE for this instead of custom _draw()
+	#var base_size := 256.0
+	#var sprite_scale := Vector2.ONE * size / base_size
 	#sprite.set_scale(sprite_scale)
 	#sprite.material.set_shader_parameter("scale", sprite_scale)
 	
@@ -35,8 +37,8 @@ func fit_between(a:SliderPlayer, b:SliderPlayer) -> void:
 	# By using angle, we can allow any distance between sliders, 
 	# and it will still only break if you're further away from the mean/normal/center line
 	var vec_horiz := Vector2(vec.x, 0)
-	var angle := vec_horiz.angle_to(vec)
-	broken = abs(angle) >= MIN_ANGLE_FOR_EDGE_BREAK
+	angle = vec_horiz.angle_to(vec)
+	broken = absf(angle) >= MIN_ANGLE_FOR_EDGE_BREAK
 	
 	col_shape_node.disabled = broken
 	modulate.a = 0.25 if broken else 1.0
@@ -46,7 +48,12 @@ func fit_between(a:SliderPlayer, b:SliderPlayer) -> void:
 func _draw() -> void:
 	var b := StyleBoxFlat.new()
 	b.bg_color = Color.BLACK
+	
+	var about_to_break := absf(angle) >= MIN_ANGLE_FOR_EDGE_BREAK*0.75 and absf(angle) <= MIN_ANGLE_FOR_EDGE_BREAK * 1.3
+	if about_to_break:
+		b.bg_color = Color.DARK_RED
+	
 	b.border_color = Color.WHITE
-	b.set_corner_radius_all(8.0)
-	b.set_border_width_all(2.0)
+	b.set_corner_radius_all(8)
+	b.set_border_width_all(2)
 	draw_style_box(b, rect)

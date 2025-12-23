@@ -7,14 +7,16 @@ class_name Gifts
 @export var sliders : Sliders
 var gifts : Array[Gift]
 
+signal gift_killed(g:Gift)
+
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	_on_timer_timeout()
 
 func _on_timer_timeout() -> void:
 	var player_count := sliders.get_all_with_player().size()
-	var min_gifts := floori(0.5 * player_count) # @TODO: Config
-	var max_gifts := floori(1.5 * player_count)
+	var min_gifts := 1 
+	var max_gifts := maxi(player_count, 2) # @TODO: Config?
 	
 	# ensure we're above minimum
 	while count() < min_gifts:
@@ -38,9 +40,11 @@ func drop_gift() -> void:
 	pos.y = 0
 	g.set_type(random_type)
 	g.set_position(pos)
+	g.time_appeared = Time.get_ticks_msec()
 	gifts.append(g)
 	g.killed.connect(_on_gift_killed)
 	add_child(g)
 
 func _on_gift_killed(g:Gift) -> void:
 	gifts.erase(g)
+	gift_killed.emit(g)
