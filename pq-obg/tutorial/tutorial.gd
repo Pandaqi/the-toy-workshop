@@ -29,7 +29,7 @@ func prepare_sprites() -> void:
 	# create objects for them
 	for i in range(count()):
 		var t : TutorialSprite = sprite_scene.instantiate()
-		container.add_child(t)
+		box_container.add_child(t)
 		sprites.append(t)
 		t.refresh_size(Global.config_system.tutorial_scale)
 		t.set_stage(stages[i])

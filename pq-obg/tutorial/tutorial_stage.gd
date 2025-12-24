@@ -12,6 +12,6 @@ enum Type
 
 @export var type := Type.GAMEPLAY
 
-@export var texture : AtlasTexture
+@export var texture : Texture
 @export var heading := "" # a custom heading that overrules the usual
 @export_multiline var content := "" # text to display (instead of image)

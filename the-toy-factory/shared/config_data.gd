@@ -20,7 +20,7 @@ class_name ConfigData
 
 @export_subgroup("Edges")
 @export var edge_thickness := 18.0
-@export var edge_dist_break := 0.3 # ~viewport height
+@export var edge_dist_break := 0.275 # ~viewport height
 
 @export_subgroup("Gifts")
 @export var min_gifts_on_screen := 1

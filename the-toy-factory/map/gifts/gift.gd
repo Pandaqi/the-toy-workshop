@@ -77,9 +77,9 @@ func refresh_size() -> void:
 func kill(good := false) -> void:
 	if already_killed: return
 	
-	print("Gift killed. Good? ", good)
 	was_delivered = good
 	already_killed = true
+	
 	if good: 
 		AudioManager.pitch_shift(audio_deliver)
 		audio_deliver.play()

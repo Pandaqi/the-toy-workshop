@@ -39,9 +39,11 @@ func place_player(btn:InputButton) -> void:
 	
 	if p.has_node("ModuleStatus"):
 		p.get_node("ModuleStatus").revive()
+	
+	p.revived.emit()
 
 func remove_player(btn:InputButton) -> void:
-	var connected_player = get_player_with_button(btn)
+	var connected_player := get_player_with_button(btn)
 	if not connected_player: return
 	
 	connected_player.module_input.deactivate()
@@ -51,6 +53,7 @@ func remove_player(btn:InputButton) -> void:
 		connected_player.get_node("ModuleStatus").die()
 		return
 	
+	connected_player.killed.emit()
 	connected_player.queue_free()
 
 func get_player_with_button(btn:InputButton) -> PlayerSystem:
@@ -61,8 +64,8 @@ func get_player_with_button(btn:InputButton) -> PlayerSystem:
 
 func _on_buttons_changed() -> void:
 	for p in player_data.players:
-		var btn : InputButton = p.module_input.button
+		var btn := p.module_input.button
 		if Global.input.is_button_possible(btn): continue
-		var new_btn : InputButton = Global.input.get_next_button_any()
+		var new_btn := Global.input.get_next_button_any()
 		if not new_btn: continue
 		p.module_input.activate(btn)

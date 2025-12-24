@@ -8,6 +8,9 @@ var edges : Array[Edge]
 
 @export var dynamic_edges_enabled := true
 
+func _ready() -> void:
+	sliders.changed.connect(update_edges)
+
 func count() -> int:
 	return edges.size()
 

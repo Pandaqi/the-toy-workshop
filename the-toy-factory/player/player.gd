@@ -7,6 +7,8 @@ func _ready() -> void:
 	module_input.quick_pressed.connect(_on_quick_pressed)
 	module_input.hold_started.connect(_on_hold_started)
 	module_input.hold_ended.connect(_on_hold_ended)
+	
+	killed.connect(_on_killed)
 
 func _physics_process(_delta:float) -> void:
 	stick_visualizer_to_slider()
@@ -28,3 +30,7 @@ func _on_hold_started() -> void:
 
 func _on_hold_ended(_time:float) -> void:
 	slider._on_hold_ended()
+
+func _on_killed() -> void:
+	slider = null
+	module_input.clear_button_visualizers()

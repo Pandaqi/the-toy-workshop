@@ -13,8 +13,7 @@ func _ready() -> void:
 
 func _on_game_over() -> void:
 	if game_over: return
-	
-	print("GAME OVER!")
+
 	game_over = true
 	audio_victory.play()
 	

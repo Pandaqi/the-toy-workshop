@@ -162,6 +162,7 @@ libraries = {
 layer = 4
 
 [node name="Edges" type="Node2D" parent="Game" unique_id=916891675 node_paths=PackedStringArray("sliders")]
+process_mode = 3
 script = ExtResource("2_stb74")
 sliders = NodePath("../Sliders")
 edge_scene = ExtResource("5_q74el")

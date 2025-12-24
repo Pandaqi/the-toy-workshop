@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://djftun4vq0s5o"]
+[gd_scene load_steps=4 format=3 uid="uid://djftun4vq0s5o"]
 
 [ext_resource type="Script" uid="uid://dj8dcab5wtmjl" path="res://pq-obg/tutorial/tutorial_sprite.gd" id="1_mn6vr"]
 [ext_resource type="Texture2D" uid="uid://dba3d8qc4lx2u" path="res://pq-obg/tutorial/textures/tutorial_bg_objective.tres" id="2_6pe8q"]
-[ext_resource type="Texture2D" uid="uid://cbue28i4wsoti" path="res://pq-obg/ui/textures/icon_reset.tres" id="4_an53l"]
 [ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="4_u3wn5"]
 
 [node name="TutorialSprite" type="Control" unique_id=1073214069 node_paths=PackedStringArray("texture_background", "texture_content", "label_heading", "label_content", "label_heading_icon", "heading_hbox", "margin_container", "margin_container_texture", "timer")]
@@ -91,7 +90,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="TextureContent" type="TextureRect" parent="MarginContainer/VBoxContainer/Control/MarginContainer" unique_id=48537458]
 layout_mode = 2
-texture = ExtResource("4_an53l")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="LabelContent" type="Label" parent="MarginContainer/VBoxContainer/Control/MarginContainer" unique_id=917952514]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TutorialStage" load_steps=3 format=3 uid="uid://ol8deq5icsb0"]
+
+[ext_resource type="Script" uid="uid://b8gcpdtp867fe" path="res://pq-obg/tutorial/tutorial_stage.gd" id="1_fg2l5"]
+[ext_resource type="Texture2D" uid="uid://kroy20t3yv2v" path="res://the-toy-factory/ui/tutorial/tutorial-press.webp" id="2_4olhy"]
+
+[resource]
+script = ExtResource("1_fg2l5")
+type = 2
+texture = ExtResource("2_4olhy")
+metadata/_custom_type_script = "uid://b8gcpdtp867fe"

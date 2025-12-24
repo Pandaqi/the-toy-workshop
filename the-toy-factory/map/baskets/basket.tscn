@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3632k0orh8pk"]
+[gd_scene load_steps=8 format=3 uid="uid://d3632k0orh8pk"]
 
 [ext_resource type="Script" uid="uid://bh71pfjcjl6bn" path="res://the-toy-factory/map/baskets/basket.gd" id="1_yh5ap"]
 [ext_resource type="Shader" uid="uid://dw7htltadsxew" path="res://the-toy-factory/map/baskets/basket.gdshader" id="2_l4wvx"]
 [ext_resource type="Texture2D" uid="uid://qqutd4d4mwpb" path="res://the-toy-factory/map/baskets/basket.webp" id="3_l4wvx"]
 [ext_resource type="Texture2D" uid="uid://iqnf101miofb" path="res://the-toy-factory/shared/assets.webp" id="3_ol4dk"]
-[ext_resource type="Shader" uid="uid://cl2sxwefk72to" path="res://the-toy-factory/map/baskets/drop_shadow.gdshader" id="4_82riw"]
 [ext_resource type="FontFile" uid="uid://cdpbs4r7y1uw1" path="res://the-toy-factory/ui/fonts/gomarice_kinako_mochi.ttf" id="6_kd5v6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_82riw"]
@@ -16,10 +15,6 @@ shader_parameter/left = 40
 shader_parameter/bottom = 40
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kd5v6"]
-shader = ExtResource("4_82riw")
-shader_parameter/shadow_only = false
-shader_parameter/shadow_color = Color(0, 0, 0, 1)
-shader_parameter/blur_std = 5.0
 
 [node name="Basket" type="Node2D" unique_id=1920963403 node_paths=PackedStringArray("area", "col_shape_node", "sprite", "sprite_type", "label_container", "label")]
 script = ExtResource("1_yh5ap")
@@ -49,17 +44,14 @@ vframes = 4
 
 [node name="Label" type="Label" parent="LabelContainer" unique_id=1096799482]
 custom_minimum_size = Vector2(64, 18)
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = 2.0
-offset_right = 33.0
-offset_bottom = 20.0
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 24.0
 grow_horizontal = 2
-grow_vertical = 2
+pivot_offset = Vector2(32, 0)
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.1728327, 0.17283267, 0.17283267, 1)
 theme_override_fonts/font = ExtResource("6_kd5v6")

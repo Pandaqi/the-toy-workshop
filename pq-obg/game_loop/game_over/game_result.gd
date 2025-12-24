@@ -10,7 +10,6 @@ func set_data(rank: int, res:ObjectiveResult, t:ObjectiveTracker) -> void:
 	
 	# our specific result that brought us there (prettified to string)
 	var result_string := res.get_value_as_type(t.type)
-	print(res.value)
 	label_result.set_text(result_string)
 	
 	# our button (which is our only identifying mark for players)

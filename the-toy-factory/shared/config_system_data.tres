@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ConfigSystemData" load_steps=21 format=3 uid="uid://cl8u658pu2dg7"]
+[gd_resource type="Resource" script_class="ConfigSystemData" load_steps=24 format=3 uid="uid://cl8u658pu2dg7"]
 
 [ext_resource type="AudioStream" uid="uid://cfe2jylsp4enn" path="res://pq-obg/audio/sfx/ui_click.mp3" id="1_0n18i"]
 [ext_resource type="AudioStream" uid="uid://cp1t2pmbbc3tc" path="res://the-toy-factory/shared/bg-theme.mp3" id="1_kjrog"]
@@ -20,6 +20,9 @@
 [ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="11_a65wk"]
 [ext_resource type="Resource" uid="uid://cjf5k7opfchwl" path="res://the-toy-factory/ui/settings/tab_game.tres" id="12_kyrf5"]
 [ext_resource type="Script" uid="uid://b8gcpdtp867fe" path="res://pq-obg/tutorial/tutorial_stage.gd" id="12_unrv2"]
+[ext_resource type="Resource" uid="uid://dpocvijqpjk2f" path="res://the-toy-factory/ui/tutorial/tutorial_objective.tres" id="21_unrv2"]
+[ext_resource type="Resource" uid="uid://ol8deq5icsb0" path="res://the-toy-factory/ui/tutorial/tutorial_press.tres" id="22_wxrif"]
+[ext_resource type="Resource" uid="uid://teon5uv1re1r" path="res://the-toy-factory/ui/tutorial/tutorial_hold.tres" id="23_yhpkd"]
 
 [resource]
 script = ExtResource("7_ej2k4")
@@ -35,5 +38,6 @@ font_body_bold_italic = ExtResource("6_a65wk")
 font_heading = ExtResource("9_yhpkd")
 font_special = ExtResource("9_yhpkd")
 color_main = Color(0.9315679, 0, 0.38401562, 1)
+tutorials = Array[ExtResource("12_unrv2")]([ExtResource("21_unrv2"), ExtResource("22_wxrif"), ExtResource("23_yhpkd")])
 button_visualizer_scale_base = 0.05
 metadata/_custom_type_script = "uid://dui163ptds6sq"

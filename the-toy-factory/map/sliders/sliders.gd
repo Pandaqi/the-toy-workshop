@@ -12,6 +12,22 @@ var walls : Array[StaticBody2D]
 
 var NUM_SLIDERS := Global.config.num_sliders
 
+# indices of the slider each player commandeers; index = player count
+# expects 13 sliders (+2 edges = indices from 0 to 14)
+const SLIDER_ARRANGEMENTS = [
+	[],
+	[7], # 1 player
+	[4,10],
+	[3,7,11], # 3 players
+	[3,6,8,11],
+	[2,5,7,9,12], # 5 players
+	[2,4,6,8,10,12],
+	[1,3,5,7,9,11,13], # 7 players
+	[1,3,5,6,8,9,11,13]
+]
+
+signal changed()
+
 func _ready() -> void:
 	create_sliders()
 	create_walls()
@@ -74,15 +90,14 @@ func refresh_players() -> void:
 	if debug and OS.is_debug_build(): num_players = debug_player_count
 	if num_players <= 0: return
 	
-	# @TODO: this is a rudimentary way to spread out the players, 
-	# add more safeguards or just manually input all the configurations?
-	var num_sliders := count()
+	var fixed_arrangement : Array = SLIDER_ARRANGEMENTS[num_players]
+	var arrangement : Array[int] = []
+	arrangement.assign(fixed_arrangement)
+	
 	for i in range(num_players):
-		var index_raw := floori((i+0.5) / float(num_players) * num_sliders - 1)
-		var index := clampi(index_raw, 1, count() - 2)
+		var index := arrangement[i]
 		sliders[index].attach_to_player(i)
 		player_data.players[i].attach_slider(sliders[index])
-		print(i, index)
 
 func create_sliders() -> void:
 	# player-controlled sliders
@@ -117,7 +132,7 @@ func refresh_slider_positions() -> void:
 	sliders.back().set_position(Vector2(vp.x, half_y))
 	
 	for i in range(1, count()-1):
-		var new_x := (i+1)*x_dist_between_sliders
+		var new_x := i*x_dist_between_sliders
 		# only override y-pos if not initialized yet; otherwise just keep same
 		var new_y := half_y if is_zero_approx(sliders[i].position.y) else sliders[i].position.y
 		sliders[i].set_position(Vector2(new_x, new_y))
