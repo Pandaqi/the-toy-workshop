@@ -2,8 +2,10 @@ extends CanvasLayer
 class_name UI
 
 @export var baskets : Baskets
+@export var gifts : Gifts
 @export var audio_victory : AudioStreamPlayer
-# @export var game_over_menu : GameOverMenuCustom
+@export var game_over_menu : GameOverMenu
+@export var game_over_data : GameOverData
 var game_over := false
 
 func _ready() -> void:
@@ -16,11 +18,9 @@ func _on_game_over() -> void:
 	game_over = true
 	audio_victory.play()
 	
-	# @TODO: save the game data on the resource
-	#game_over_data.game_over_good = good
-	#game_over_data.score = final_score
-	#game_over_data.time_played = floori((Time.get_ticks_msec() - score.time_started) / 1000.0)
-	#game_over_data.gifts_delivered = map_data.sleigh.module_gifts.num_delivered
+	var final_score := roundi(baskets.score)
+	game_over_data.score = final_score
+	game_over_data.time_played = floori((Time.get_ticks_msec() - baskets.time_started) / 1000.0)
+	game_over_data.gifts_failed = gifts.num_failed
 	
-	# @TODO: enable once I have it
-	# game_over_menu.activate()
+	game_over_menu.activate(game_over_data)

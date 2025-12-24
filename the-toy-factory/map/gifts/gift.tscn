@@ -1,21 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://cshnp6yn20xpm"]
+[gd_scene load_steps=12 format=3 uid="uid://cshnp6yn20xpm"]
 
 [ext_resource type="Script" uid="uid://lklfvtjjik7q" path="res://the-toy-factory/map/gifts/gift.gd" id="1_l7r6i"]
 [ext_resource type="Texture2D" uid="uid://iqnf101miofb" path="res://the-toy-factory/shared/assets.webp" id="2_l7r6i"]
+[ext_resource type="AudioStream" uid="uid://c64mhwtywv3yj" path="res://the-toy-factory/map/gifts/gift_appear.mp3" id="3_nwg5i"]
+[ext_resource type="AudioStream" uid="uid://br2yaubcqdrpt" path="res://the-toy-factory/map/gifts/gift_grab.mp3" id="4_2f5jj"]
+[ext_resource type="AudioStream" uid="uid://dqu2w21hoy75k" path="res://the-toy-factory/map/gifts/gift_lose.mp3" id="5_5ebmp"]
+[ext_resource type="AudioStream" uid="uid://b22m3gm1slyo0" path="res://the-toy-factory/map/gifts/dull-thud.mp3" id="6_2f5jj"]
+[ext_resource type="Texture2D" uid="uid://l5erg6gtt7t6" path="res://the-toy-factory/map/gifts/star_particle.webp" id="7_5ebmp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6px0q"]
-radius = 16.27882
+radius = 16.0
 
-[node name="Gift" type="RigidBody2D" unique_id=885653250 node_paths=PackedStringArray("sprite")]
-gravity_scale = 0.1
+[sub_resource type="Curve" id="Curve_7dunv"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.29259259, -14.976868), 0.0, 0.0, 0, 0, Vector2(0.68518525, 21.078613), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_llfix"]
+_data = [Vector2(0, 0.008474708), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_5ebmp"]
+offsets = PackedFloat32Array(0, 0.86885244, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Gift" type="RigidBody2D" unique_id=885653250 node_paths=PackedStringArray("sprite", "col_shape_node", "audio_appear", "audio_deliver", "audio_killed", "audio_hit")]
+gravity_scale = 0.175
+contact_monitor = true
+max_contacts_reported = 2
 script = ExtResource("1_l7r6i")
 sprite = NodePath("Sprite2D")
+col_shape_node = NodePath("CollisionShape2D")
+audio_appear = NodePath("AudioAppear")
+audio_deliver = NodePath("AudioDeliver")
+audio_killed = NodePath("AudioKilled")
+audio_hit = NodePath("AudioHit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=940925513]
 shape = SubResource("CircleShape2D_6px0q")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1124573954]
+amount = 18
+texture = ExtResource("7_5ebmp")
+randomness = 1.0
+gravity = Vector2(0, 0)
+angle_min = -10.0
+angle_max = 10.0
+angle_curve = SubResource("Curve_7dunv")
+scale_amount_min = 0.05
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_llfix")
+color_ramp = SubResource("Gradient_5ebmp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=358833276]
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_l7r6i")
 hframes = 4
 vframes = 4
+
+[node name="AudioAppear" type="AudioStreamPlayer2D" parent="." unique_id=1115855262]
+stream = ExtResource("3_nwg5i")
+bus = &"Game"
+
+[node name="AudioDeliver" type="AudioStreamPlayer2D" parent="." unique_id=2077721396]
+stream = ExtResource("4_2f5jj")
+bus = &"Game"
+
+[node name="AudioKilled" type="AudioStreamPlayer2D" parent="." unique_id=35765307]
+stream = ExtResource("5_5ebmp")
+bus = &"Game"
+
+[node name="AudioHit" type="AudioStreamPlayer2D" parent="." unique_id=170407122]
+stream = ExtResource("6_2f5jj")
+bus = &"Game"

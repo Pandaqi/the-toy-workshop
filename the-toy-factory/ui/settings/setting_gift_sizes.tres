@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Setting" load_steps=2 format=3 uid="uid://fp8gmx5ivojf"]
+
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="1_mqsoo"]
+
+[resource]
+script = ExtResource("1_mqsoo")
+key = "allow_different_gift_sizes"
+label = "SETTING_GIFT_SIZES"
+metadata/_custom_type_script = "uid://cu5ytdnryre03"

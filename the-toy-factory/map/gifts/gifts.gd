@@ -7,6 +7,9 @@ class_name Gifts
 @export var sliders : Sliders
 var gifts : Array[Gift]
 
+var num_success := 0
+var num_failed := 0
+
 signal gift_killed(g:Gift)
 
 func _ready() -> void:
@@ -15,8 +18,9 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	var player_count := sliders.get_all_with_player().size()
-	var min_gifts := 1 
-	var max_gifts := maxi(player_count, 2) # @TODO: Config?
+	var factor := Global.config.num_gifts_on_screen_factor
+	var min_gifts := floori(Global.config.min_gifts_on_screen * factor)
+	var max_gifts := floori( maxi(Global.config.max_gifts_on_screen_per_player * player_count, Global.config.max_gifts_on_screen_default) * factor )
 	
 	# ensure we're above minimum
 	while count() < min_gifts:
@@ -48,3 +52,5 @@ func drop_gift() -> void:
 func _on_gift_killed(g:Gift) -> void:
 	gifts.erase(g)
 	gift_killed.emit(g)
+	if not g.was_delivered: num_failed += 1
+	else: num_success += 1

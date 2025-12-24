@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dp5dm7alxgb3t"
+
+[deps]
+
+files=["res://the-toy-factory/localization/custom.en.translation", "res://the-toy-factory/localization/custom.nl.translation", "res://the-toy-factory/localization/custom.es.translation", "res://the-toy-factory/localization/custom.fr.translation", "res://the-toy-factory/localization/custom.de.translation", "res://the-toy-factory/localization/custom.pt.translation", "res://the-toy-factory/localization/custom.it.translation"]
+
+source_file="res://the-toy-factory/localization/custom.csv"
+dest_files=["res://the-toy-factory/localization/custom.en.translation", "res://the-toy-factory/localization/custom.nl.translation", "res://the-toy-factory/localization/custom.es.translation", "res://the-toy-factory/localization/custom.fr.translation", "res://the-toy-factory/localization/custom.de.translation", "res://the-toy-factory/localization/custom.pt.translation", "res://the-toy-factory/localization/custom.it.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

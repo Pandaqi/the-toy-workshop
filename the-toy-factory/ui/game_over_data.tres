@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameOverData" load_steps=2 format=3 uid="uid://cqwkujb0hchcm"]
+
+[ext_resource type="Script" uid="uid://cgu8wp3jnr4st" path="res://the-toy-factory/ui/game_over_data.gd" id="1_fgy3a"]
+
+[resource]
+script = ExtResource("1_fgy3a")
+header = "GAME_OVER_HEADER_GOOD"
+metadata/_custom_type_script = "uid://cgu8wp3jnr4st"

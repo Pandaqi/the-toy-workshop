@@ -4,10 +4,13 @@ class_name Edge
 @export var col_shape_node : CollisionShape2D
 var broken := false
 var rect : Rect2
-var angle := 0.0
+var y_dist := 0.0
 
-const THICKNESS := 20.0 # @TODO: Config
-const MIN_ANGLE_FOR_EDGE_BREAK := 0.18*PI # @TODO: Config
+@export var audio_snap : AudioStreamPlayer2D
+@export var audio_stretch : AudioStreamPlayer2D
+
+var THICKNESS := Global.config.edge_thickness
+var MIN_DIST_FOR_EDGE_BREAK := Global.config.edge_dist_break
 
 func _ready() -> void:
 	var col_shape := RectangleShape2D.new()
@@ -34,24 +37,34 @@ func fit_between(a:SliderPlayer, b:SliderPlayer) -> void:
 	
 	set_position(center_pos)
 	
-	# By using angle, we can allow any distance between sliders, 
-	# and it will still only break if you're further away from the mean/normal/center line
-	var vec_horiz := Vector2(vec.x, 0)
-	angle = vec_horiz.angle_to(vec)
-	broken = absf(angle) >= MIN_ANGLE_FOR_EDGE_BREAK
+	y_dist = absf(vec.y)
+	var was_broken := broken
+	broken = y_dist >= get_dist_for_break()
+	if not was_broken and broken:
+		AudioManager.pitch_shift(audio_snap)
+		audio_snap.play()
 	
 	col_shape_node.disabled = broken
 	modulate.a = 0.25 if broken else 1.0
 	
 	queue_redraw()
 
+func get_dist_for_break() -> float:
+	return MIN_DIST_FOR_EDGE_BREAK * get_viewport().get_visible_rect().size.y
+
 func _draw() -> void:
 	var b := StyleBoxFlat.new()
 	b.bg_color = Color.BLACK
 	
-	var about_to_break := absf(angle) >= MIN_ANGLE_FOR_EDGE_BREAK*0.75 and absf(angle) <= MIN_ANGLE_FOR_EDGE_BREAK * 1.3
-	if about_to_break:
+	var dist_break := get_dist_for_break()
+	var about_to_break := y_dist >= dist_break*0.8 and y_dist <= dist_break
+	var about_to_unbreak := y_dist >= dist_break and y_dist <= dist_break * 1.25
+	if about_to_break or about_to_unbreak:
 		b.bg_color = Color.DARK_RED
+	
+	if about_to_break and not audio_stretch.playing: 
+		AudioManager.pitch_shift(audio_stretch)
+		audio_stretch.play()
 	
 	b.border_color = Color.WHITE
 	b.set_corner_radius_all(8)

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ConfigData" load_steps=2 format=3 uid="uid://cd65grt5ighyx"]
+
+[ext_resource type="Script" uid="uid://c6i33w2n3orqu" path="res://the-toy-factory/shared/config_data.gd" id="1_p160b"]
+
+[resource]
+script = ExtResource("1_p160b")
+metadata/_custom_type_script = "uid://c6i33w2n3orqu"

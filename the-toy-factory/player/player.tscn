@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://domgnj8g61mpk"]
+
+[ext_resource type="Script" uid="uid://bqtoo4tpwyyqh" path="res://the-toy-factory/player/player.gd" id="1_h7h6p"]
+[ext_resource type="Script" uid="uid://cbh8pskekcq4r" path="res://pq-obg/input/module_input.gd" id="2_goujv"]
+
+[node name="Player" type="Node" unique_id=882147058 node_paths=PackedStringArray("module_input")]
+script = ExtResource("1_h7h6p")
+module_input = NodePath("ModuleInput")
+
+[node name="ModuleInput" type="Node" parent="." unique_id=284092850]
+script = ExtResource("2_goujv")
+hold_time = 100.0
+metadata/_custom_type_script = "uid://cbh8pskekcq4r"

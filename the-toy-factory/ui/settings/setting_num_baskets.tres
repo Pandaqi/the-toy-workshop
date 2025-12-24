@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Setting" load_steps=2 format=3 uid="uid://c3wjp4pe62ovo"]
+
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="1_fjbsy"]
+
+[resource]
+script = ExtResource("1_fjbsy")
+type = 2
+type_display = 1
+key = "num_baskets"
+label = "SETTING_NUM_BASKETS"
+min_value = 4.0
+max_value = 10.0
+metadata/_custom_type_script = "uid://cu5ytdnryre03"

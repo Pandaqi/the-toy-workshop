@@ -8,8 +8,8 @@ class_name Basket
 @export var label_container : Node2D
 @export var label : Label
 
-const BASKET_HEIGHT := 96.0 # @TODO: Config??
-const GIFT_DELIVERED_TARGET := 5 # @TODO: Config
+var BASKET_HEIGHT := Global.config.basket_height
+var GIFT_DELIVERED_TARGET := Global.config.basket_num_gifts_target
 
 var num_delivered := 0
 var type : Gift.Type
@@ -31,7 +31,6 @@ func set_type(tp:Gift.Type) -> void:
 func _on_body_entered(body:Node2D) -> void:
 	if not (body is Gift): return
 
-	# @TODO: animation/delay/keep for a bit/whatever
 	var is_good := (body as Gift).is_type(type)
 	if is_good:
 		deliver_gift(body)

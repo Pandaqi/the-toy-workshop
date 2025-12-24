@@ -1,24 +1,127 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctn77ic3gi4aa"]
+[gd_scene load_steps=24 format=3 uid="uid://ctn77ic3gi4aa"]
 
+[ext_resource type="PackedScene" uid="uid://c3mew7u5cevle" path="res://pq-obg/state/state.tscn" id="1_4xkq0"]
 [ext_resource type="Script" uid="uid://ocl0tyru3bcu" path="res://the-toy-factory/background/background.gd" id="1_7unbb"]
 [ext_resource type="Script" uid="uid://jnruh551l300" path="res://the-toy-factory/map/sliders/sliders.gd" id="1_nul57"]
 [ext_resource type="FontFile" uid="uid://cdpbs4r7y1uw1" path="res://the-toy-factory/ui/fonts/gomarice_kinako_mochi.ttf" id="2_c5rqg"]
 [ext_resource type="Texture2D" uid="uid://6m641lvgg7ul" path="res://the-toy-factory/background/factory-bg.webp" id="2_k2vhd"]
 [ext_resource type="PackedScene" uid="uid://dq7q6grepk3qe" path="res://the-toy-factory/map/sliders/slider.tscn" id="2_nul57"]
+[ext_resource type="Script" uid="uid://dt8klrrk4jcu1" path="res://pq-obg/players/player_spawner.gd" id="2_rk0vc"]
 [ext_resource type="Script" uid="uid://cshm38e4rjhjv" path="res://the-toy-factory/map/edges/edges.gd" id="2_stb74"]
+[ext_resource type="PackedScene" uid="uid://domgnj8g61mpk" path="res://the-toy-factory/player/player.tscn" id="3_rk0vc"]
 [ext_resource type="Script" uid="uid://dyf7qqknjxpqo" path="res://the-toy-factory/map/gifts/gifts.gd" id="5_6px0q"]
 [ext_resource type="PackedScene" uid="uid://fb1pgue58sii" path="res://the-toy-factory/map/edges/edge.tscn" id="5_q74el"]
 [ext_resource type="PackedScene" uid="uid://cshnp6yn20xpm" path="res://the-toy-factory/map/gifts/gift.tscn" id="6_6px0q"]
 [ext_resource type="Script" uid="uid://rd50p3uaay7m" path="res://the-toy-factory/map/baskets/baskets.gd" id="7_7unbb"]
 [ext_resource type="PackedScene" uid="uid://d3632k0orh8pk" path="res://the-toy-factory/map/baskets/basket.tscn" id="8_yont5"]
 [ext_resource type="Script" uid="uid://dgebfcmsw85yo" path="res://the-toy-factory/ui/ui.gd" id="11_m0c03"]
+[ext_resource type="Resource" uid="uid://cqn477x4eqflj" path="res://pq-obg/players/player_data.tres" id="12_qxi43"]
+[ext_resource type="AudioStream" uid="uid://b5j1ps55dos63" path="res://the-toy-factory/ui/finish_cheers.mp3" id="13_8vucg"]
+[ext_resource type="PackedScene" uid="uid://bm52gxys3unnf" path="res://pq-obg/game_loop/game_over/game_over_menu/game_over_menu.tscn" id="13_ll6v1"]
+[ext_resource type="Resource" uid="uid://cqwkujb0hchcm" path="res://the-toy-factory/ui/game_over_data.tres" id="14_4xkq0"]
+[ext_resource type="PackedScene" uid="uid://nk31em7vq05f" path="res://pq-obg/ui/button_instructions/button_instructions.tscn" id="17_76qob"]
+
+[sub_resource type="Animation" id="Animation_8vucg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScoreLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScoreLabel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScoreLabel:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uh538"]
+resource_name = "score_changed"
+length = 0.2
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScoreLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.4369954, 1.4369954, 1.4369954, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScoreLabel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScoreLabel:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.07692308, 0.15384616, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.08726646, 0.06981317, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ll6v1"]
+_data = {
+&"RESET": SubResource("Animation_8vucg"),
+&"score_changed": SubResource("Animation_uh538")
+}
 
 [node name="Main" type="Node2D" unique_id=442931553]
 
-[node name="Background" type="CanvasLayer" parent="." unique_id=2120066820 node_paths=PackedStringArray("baskets", "score_label")]
+[node name="State" parent="." unique_id=1145839826 instance=ExtResource("1_4xkq0")]
+
+[node name="PlayerSpawner" type="Node" parent="." unique_id=1060688565 node_paths=PackedStringArray("container")]
+script = ExtResource("2_rk0vc")
+player_scene = ExtResource("3_rk0vc")
+container = NodePath("../Game/Baskets")
+metadata/_custom_type_script = "uid://dt8klrrk4jcu1"
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=2120066820 node_paths=PackedStringArray("baskets", "score_label", "anim_player")]
 script = ExtResource("1_7unbb")
 baskets = NodePath("../Game/Baskets")
 score_label = NodePath("ScoreLabel")
+anim_player = NodePath("AnimationPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="Background" unique_id=727571760]
 anchors_preset = 15
@@ -42,12 +145,18 @@ offset_right = 128.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(128, 128)
 theme_override_colors/font_color = Color(0.80109006, 0.3103465, 0.15031075, 1)
 theme_override_fonts/font = ExtResource("2_c5rqg")
 theme_override_font_sizes/font_size = 96
 text = "0000"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background" unique_id=1049439248]
+libraries = {
+&"": SubResource("AnimationLibrary_ll6v1")
+}
 
 [node name="Game" type="CanvasLayer" parent="." unique_id=1065955034]
 layer = 4
@@ -60,6 +169,7 @@ edge_scene = ExtResource("5_q74el")
 [node name="Sliders" type="Node2D" parent="Game" unique_id=728342587]
 script = ExtResource("1_nul57")
 slider_scene = ExtResource("2_nul57")
+player_data = ExtResource("12_qxi43")
 
 [node name="Gifts" type="Node2D" parent="Game" unique_id=1793489989 node_paths=PackedStringArray("timer", "sliders")]
 script = ExtResource("5_6px0q")
@@ -75,10 +185,18 @@ script = ExtResource("7_7unbb")
 basket_scene = ExtResource("8_yont5")
 gifts = NodePath("../Gifts")
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=501688603 node_paths=PackedStringArray("baskets", "audio_victory")]
+[node name="UI" type="CanvasLayer" parent="." unique_id=501688603 node_paths=PackedStringArray("baskets", "gifts", "audio_victory", "game_over_menu")]
 layer = 8
 script = ExtResource("11_m0c03")
 baskets = NodePath("../Game/Baskets")
+gifts = NodePath("../Game/Gifts")
 audio_victory = NodePath("AudioVictory")
+game_over_menu = NodePath("GameOverMenu")
+game_over_data = ExtResource("14_4xkq0")
+
+[node name="GameOverMenu" parent="UI" unique_id=721452580 instance=ExtResource("13_ll6v1")]
 
 [node name="AudioVictory" type="AudioStreamPlayer" parent="UI" unique_id=1599638360]
+stream = ExtResource("13_8vucg")
+
+[node name="ButtonInstructions" parent="." unique_id=13185939 instance=ExtResource("17_76qob")]

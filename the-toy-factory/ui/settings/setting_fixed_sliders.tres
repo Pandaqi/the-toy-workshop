@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Setting" load_steps=2 format=3 uid="uid://dsp4x6oputqs4"]
+
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="1_tpvi7"]
+
+[resource]
+script = ExtResource("1_tpvi7")
+key = "move_fixed_sliders"
+label = "SETTING_FIXED_SLIDERS"
+metadata/_custom_type_script = "uid://cu5ytdnryre03"

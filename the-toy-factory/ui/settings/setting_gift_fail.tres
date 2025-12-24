@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Setting" load_steps=2 format=3 uid="uid://cmd4gh21ru0ir"]
+
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="1_gh6dv"]
+
+[resource]
+script = ExtResource("1_gh6dv")
+key = "lose_points_for_failed_gifts"
+label = "SETTING_GIFT_FAIL"
+metadata/_custom_type_script = "uid://cu5ytdnryre03"

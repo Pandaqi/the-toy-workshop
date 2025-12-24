@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SettingGroup" load_steps=7 format=3 uid="uid://c7wjf6wskrcgl"]
+
+[ext_resource type="Script" uid="uid://c7uqyg8sqnc02" path="res://pq-obg/settings/setting_group.gd" id="1_5iaqo"]
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="2_xep52"]
+[ext_resource type="Resource" uid="uid://dsp4x6oputqs4" path="res://the-toy-factory/ui/settings/setting_fixed_sliders.tres" id="3_bj2f5"]
+[ext_resource type="Resource" uid="uid://c3wjp4pe62ovo" path="res://the-toy-factory/ui/settings/setting_num_baskets.tres" id="4_d66fr"]
+[ext_resource type="Resource" uid="uid://ciu1xg62t1b4l" path="res://the-toy-factory/ui/settings/setting_slider_speed.tres" id="5_07bye"]
+[ext_resource type="Resource" uid="uid://bmybxi548m4ov" path="res://the-toy-factory/ui/settings/setting_walls.tres" id="6_4ou0k"]
+
+[resource]
+script = ExtResource("1_5iaqo")
+settings = Array[ExtResource("2_xep52")]([ExtResource("3_bj2f5"), ExtResource("4_d66fr"), ExtResource("5_07bye"), ExtResource("6_4ou0k")])
+label = "SETTING_GROUP_WORKSHOP"
+metadata/_custom_type_script = "uid://c7uqyg8sqnc02"

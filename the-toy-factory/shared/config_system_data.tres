@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="ConfigSystemData" load_steps=21 format=3 uid="uid://cl8u658pu2dg7"]
+
+[ext_resource type="AudioStream" uid="uid://cfe2jylsp4enn" path="res://pq-obg/audio/sfx/ui_click.mp3" id="1_0n18i"]
+[ext_resource type="AudioStream" uid="uid://cp1t2pmbbc3tc" path="res://the-toy-factory/shared/bg-theme.mp3" id="1_kjrog"]
+[ext_resource type="PackedScene" uid="uid://bfclclol7g0ea" path="res://pq-obg/ui/button_visualizer/button_visualizer.tscn" id="2_enim6"]
+[ext_resource type="Texture2D" uid="uid://cikhqhc0hfaxm" path="res://pq-obg/ui/textures/icon_play.tres" id="3_kjrog"]
+[ext_resource type="Texture2D" uid="uid://b1jukd0t7gipn" path="res://the-toy-factory/ui/menu-bg.png" id="3_uc6bj"]
+[ext_resource type="Texture2D" uid="uid://b3xoiwk76ch5f" path="res://pq-obg/ui/textures/icon_quit.tres" id="4_kyrf5"]
+[ext_resource type="Texture2D" uid="uid://cbue28i4wsoti" path="res://pq-obg/ui/textures/icon_reset.tres" id="5_70eg4"]
+[ext_resource type="FontFile" uid="uid://dqfdxg0cxiph" path="res://the-toy-factory/ui/fonts/Playfair_9pt-Black.ttf" id="5_akwsu"]
+[ext_resource type="FontFile" uid="uid://tfgsyi5o67fk" path="res://the-toy-factory/ui/fonts/Playfair_9pt-BlackItalic.ttf" id="6_a65wk"]
+[ext_resource type="Texture2D" uid="uid://bex3uoa5xtsv8" path="res://pq-obg/ui/textures/icon_settings.tres" id="6_aeawv"]
+[ext_resource type="Script" uid="uid://dui163ptds6sq" path="res://pq-obg/settings/config_system_data.gd" id="7_ej2k4"]
+[ext_resource type="FontFile" uid="uid://bmclvnime0pam" path="res://the-toy-factory/ui/fonts/Playfair_9pt-Italic.ttf" id="7_unrv2"]
+[ext_resource type="Script" uid="uid://bk8734ulnri1t" path="res://pq-obg/settings/setting_tab.gd" id="8_ktess"]
+[ext_resource type="FontFile" uid="uid://bnqqdnsgm0lvv" path="res://the-toy-factory/ui/fonts/Playfair_9pt-Medium.ttf" id="8_wxrif"]
+[ext_resource type="Resource" uid="uid://bkdl045h6lnih" path="res://pq-obg/settings/default/tab_core.tres" id="9_uc6bj"]
+[ext_resource type="FontFile" uid="uid://cdpbs4r7y1uw1" path="res://the-toy-factory/ui/fonts/gomarice_kinako_mochi.ttf" id="9_yhpkd"]
+[ext_resource type="Resource" uid="uid://rof0eke27qbk" path="res://pq-obg/settings/default/theme/tab_theme.tres" id="10_akwsu"]
+[ext_resource type="Theme" uid="uid://ba2lixeo4d30y" path="res://pq-obg/ui/default_theme.tres" id="11_a65wk"]
+[ext_resource type="Resource" uid="uid://cjf5k7opfchwl" path="res://the-toy-factory/ui/settings/tab_game.tres" id="12_kyrf5"]
+[ext_resource type="Script" uid="uid://b8gcpdtp867fe" path="res://pq-obg/tutorial/tutorial_stage.gd" id="12_unrv2"]
+
+[resource]
+script = ExtResource("7_ej2k4")
+game_id = "the-toy-factory"
+game_version = "1.6.6"
+settings = Array[ExtResource("8_ktess")]([ExtResource("9_uc6bj"), ExtResource("10_akwsu"), ExtResource("12_kyrf5")])
+audio_bg = Array[AudioStream]([ExtResource("1_kjrog")])
+bg_image = ExtResource("3_uc6bj")
+font_body_regular = ExtResource("8_wxrif")
+font_body_italic = ExtResource("7_unrv2")
+font_body_bold = ExtResource("5_akwsu")
+font_body_bold_italic = ExtResource("6_a65wk")
+font_heading = ExtResource("9_yhpkd")
+font_special = ExtResource("9_yhpkd")
+color_main = Color(0.9315679, 0, 0.38401562, 1)
+button_visualizer_scale_base = 0.05
+metadata/_custom_type_script = "uid://dui163ptds6sq"

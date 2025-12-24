@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Setting" load_steps=2 format=3 uid="uid://1xbm2y8l1rab"]
+
+[ext_resource type="Script" uid="uid://cu5ytdnryre03" path="res://pq-obg/settings/setting.gd" id="1_rypn1"]
+
+[resource]
+script = ExtResource("1_rypn1")
+type = 2
+key = "basket_num_gifts_target"
+label = "SETTING_GIFTS_TARGET"
+min_value = 1.0
+max_value = 15.0
+metadata/_custom_type_script = "uid://cu5ytdnryre03"

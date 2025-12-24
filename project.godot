@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="The Toy Workshop"
-run/main_scene="uid://ctn77ic3gi4aa"
+run/main_scene="uid://cgdjav32fnyi8"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://c4qi4myoggsv2"
+
+[autoload]
+
+Global="*uid://cjblsc7fxuoqg"
 
 [display]
 
@@ -23,6 +27,10 @@ window/stretch/aspect="expand"
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://pq-obg/localization/obg.de.translation", "res://pq-obg/localization/obg.en.translation", "res://pq-obg/localization/obg.es.translation", "res://pq-obg/localization/obg.fr.translation", "res://pq-obg/localization/obg.it.translation", "res://pq-obg/localization/obg.nl.translation", "res://pq-obg/localization/obg.pt.translation", "res://the-toy-factory/localization/custom.de.translation", "res://the-toy-factory/localization/custom.en.translation", "res://the-toy-factory/localization/custom.es.translation", "res://the-toy-factory/localization/custom.fr.translation", "res://the-toy-factory/localization/custom.it.translation", "res://the-toy-factory/localization/custom.nl.translation", "res://the-toy-factory/localization/custom.pt.translation")
 
 [physics]
 

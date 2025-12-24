@@ -1,10 +1,11 @@
 extends Node2D
 class_name Baskets
 
-const NUM_BASKETS := 4 # @TODO: Config
+var NUM_BASKETS := Global.config.num_baskets
 var baskets : Array[Basket]
 var score := 0.0
 var num_gifts_killed_since_last_delivery := 0
+var time_started := 0.0
 
 @export var basket_scene : PackedScene
 @export var gifts : Gifts
@@ -13,6 +14,7 @@ signal game_over()
 signal score_changed(score:float)
 
 func _ready() -> void:
+	time_started = Time.get_ticks_msec()
 	gifts.gift_killed.connect(_on_gift_killed)
 	create_baskets()
 	get_viewport().size_changed.connect(_on_size_changed)
@@ -62,22 +64,30 @@ func change_score(ds:float) -> void:
 	score_changed.emit(score)
 
 func score_gift(g:Gift) -> void:
-	var val := 10.0 # @TODO: Config base score
+	var val := Global.config.score_base
 	
 	var time_taken := (Time.get_ticks_msec() - g.time_appeared)/1000.0
-	var max_time_taken := 10.0
-	val += lerp(10.0, 0.0, time_taken/max_time_taken) # @TODO: Config these values too
+	var max_time_taken := Global.config.score_bonus_speed_max_duration
+	val += lerp(Global.config.score_bonus_speed, 0.0, time_taken/max_time_taken)
 	
-	var max_gifts_killed := 5
-	val += lerp(10.0, 0.0, num_gifts_killed_since_last_delivery / float(max_gifts_killed))
+	var max_gifts_killed := Global.config.score_bonus_fewer_gifts_max
+	val += lerp(Global.config.score_bonus_fewer_gifts_destroyed, 0.0, num_gifts_killed_since_last_delivery / float(max_gifts_killed))
+	
+	var size_base := Global.config.gift_size_base
+	var rand := Global.config.gift_size_randomness
+	var min_size := size_base - rand
+	var max_size := size_base + rand
+	var size_multiplier := lerpf(0.75, 1.333, (g.radius - min_size) / (max_size - min_size))
+	val *= size_multiplier
 	
 	change_score(val)
 	num_gifts_killed_since_last_delivery = 0
 
 func _on_gift_killed(g:Gift) -> void:
 	if g.was_delivered: return
+	if not Global.config.lose_points_for_failed_gifts: return
 	
-	var score_penalty := -3
+	var score_penalty := Global.config.score_penalty_failed
 	change_score(score_penalty)
 	num_gifts_killed_since_last_delivery += 1
 
