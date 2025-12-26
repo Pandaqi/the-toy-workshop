@@ -1,6 +1,6 @@
-# The Toy Factory (Devlog)
+# Santa's Toy Workshop (Devlog)
 
-Welcome to the devlog for my game [The Toy Factory](/gamiverses/themed/christmas/the-toy-factory/) @TODO: name change probably. I will briefly talk about the process of making this game, any interesting problems I faced (or solutions I came up with), and whatever else seems fun to track or talk about.
+Welcome to the devlog for my game [Santa's Toy Workshop](/gamiverses/themed/christmas/santas-toy-workshop/). I will briefly talk about the process of making this game, any interesting problems I faced (or solutions I came up with), and whatever else seems fun to track or talk about.
 
 ## What's the idea?
 
@@ -62,6 +62,8 @@ And some finetuning here. For example,
 
 * **Clean up** gifts that fall off screen (I forgot this at first and wondered why the game became very laggy if left open a while!)
 * Add an arrow with the direction of your slider right now for clarity
+* "Smoothen" slider speed. That is, don't _instantly_ go to max speed or break back to normal speed when a button is released. There's a subtle transition of ~0.5s, which makes it feel better and more fluid.
+* Create fixed "arrangements" for the sliders depending on player count. (With 2 players, use slider X and Y. With 3 players, use slider X, Y and Z.) Randomly picking the slider positions just creates a visual mess _and_ potentially an unplayable game if, say, all sliders activated are on the same side of the screen. In such cases, it's just much easier to manually pick the only options for the "map layout" and make sure they're good ones.
 * Make an edge flash red when it's about to break (or come back)
 * Show the game score in a big and bold font plastered across the background.
 * Show the contents of individual baskets => I switched to saying "Each basket needs X gifts inside, if so, you win". It just fit the game idea better than a single unified objective or an objective based on score. I know this because it simplified my code and made all puzzle pieces simply fall in the right place. For example, it was very easy to just show a counter _per basket_, as opposed to finding some space on the screen for a single counter _for all presents_.
@@ -80,4 +82,27 @@ More specifically, this means ...
 
 Polishing in this case means creating nice images, sound effects, animations, etcetera.
 
-@TODO
+Because it's such a simple game, which is also quite similar to the previous One Button Games I made, I could mostly copy over work from the previous games. 
+
+* Simple sound effects for gifts appearing and being delivered, simple click effect for changing machine direction, etc.
+* Simple pop-up/flash animations for the most important things happening
+* A trail of stars behind gifts to make them look a bit nicer and fit into the environment better. (I wanted to add a drop shadow too, but the only shader for that I could find also DISPLACED the sprite slightly, making things not-perfectly-center-aligned anymore, which just looked odd and annoying. I'll figure that one out later.)
+* I found some sound effects for the edges "snapping" and "stretching" ( = about to snap soon), which are just modified rubber band sounds.
+* I added **tutorial images**. I had done text tutorials before, so I wanted to test the _image_ capability now. (Also, I'd already done the translations for all text in the game, so I didn't want to add tutorial text and have to translate more :p)
+* And so forth, and so forth.
+
+There's really not much interesting to say here. That is, unfortunately, what polishing feels like to me and many other developers. You're just doing the basic stuff that every game needs to look and feel better, with only a handful of custom/unique/creative polishing steps depending on the game itself. But anyway, after a few hours, it is done and the game looks much more professional.
+
+I had hoped to use this game to improve my OBG system even further. Unfortunately, in the end, this game was too simplistic to really challenge the system or make it interesting enough. I decided to just finish this idea just before Christmas was done, and decide to overhaul the OBG system for the _next_ game. 
+
+Overhaul is perhaps a strong word. This being only the 4th game I made with this system/framework, I simply have lots of missing features and bits of code that could be much cleaner now that I understand the problem space better.
+
+{{% example %}}
+I decoupled all the OBG systems at first. Every little bit of functionality (spawn player, listen to input, show instructions, etc) is its own tiny self-contained script/resource. Because that's nice and clean, yes, great. But ... it also meant that I had to add 5+ premade scenes into any game to "turn it into a One Button Game". To activate the system, so to speak. And after doing that 4 times, you think to yourself "I should just bundle these parts into one overarching manager script, so I only need to add this ONE THING and I'm done".
+{{% /example %}}
+
+As such, this 4th game didn't actually grow the system or my understanding of how to make better One Button Games. But that's fine. It's just a simple little (vaguely Christmassy) game that anyone can understand and play, but requires real collaboration to play _well_.
+
+Until the next devlog,
+
+Pandaqi

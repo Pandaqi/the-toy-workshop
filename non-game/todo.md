@@ -1,22 +1,5 @@
 # To-Do (The Toy Factory)
 
-POLISHING:
-
-**Also export for WEB + Mention ChromeOS support through Linux/Web build?**
-
-* Add OBG system 
-  * Make next OBG system improvements, that is:
-    * A single "State" that's all I need to add, which creates and calls everything else in order.
-      * Maybe rename to OBG then, just a standard scene to put anywhere it's needed
-    * Instant debug players
-    * Better PROTECTION against "released/pressed" when in _pause mode_, which means it wasn't triggered, and now things might be confused?
-      * Trigger anyway even in pause mode?
-      * Or just keep in mind that you can NEVER be sure every press has a release (and vice versa)?
-    * Better way to use State for basic score/health management and objectives based on that
-    * BUILT-IN TOOL FOR LANGUAGE-BASED GAMES:
-      * https://www.reddit.com/r/godot/comments/1hun51u/coding_a_word_scramble_game_dictionary/
-
-
 OPTIONAL:
 
 * Allow machines to go over ANY path (not just up/down y, fixed x)
